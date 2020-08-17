@@ -1,7 +1,7 @@
 {
     "name": "ahmard/uticlass",
     "description": "Pieces of classes jam-packed to ease day-too-day life :)",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
