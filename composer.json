@@ -1,0 +1,22 @@
+{
+    "name": "ahmard/uticlass",
+    "description": "Pieces of classes jam-packed to ease day-too-day life :)",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmard"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "ahmard/queliwrap": "^2.0",
+        "fabpot/goutte": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Uticlass\\": "src/"
+        }
+    }
+}
