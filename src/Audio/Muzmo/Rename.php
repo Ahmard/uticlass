@@ -1,5 +1,5 @@
 <?php
-namespace Uticlass\Muzmo;
+namespace Uticlass\Audio\Muzmo;
 
 use Symfony\Component\Console\Output\ConsoleOutput; 
 use Illuminate\Support\Facades\Storage;

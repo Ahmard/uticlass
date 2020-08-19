@@ -1,7 +1,7 @@
 <?php
 namespace Uticlass;
 
-use Uticlass\Muzmo\Rename;
+use Uticlass\Audio\Muzmo\Rename;
 use Symfony\Component\Console\Output\ConsoleOutput; 
 use Symfony\Component\Console\Helper\ProgressBar;
 
