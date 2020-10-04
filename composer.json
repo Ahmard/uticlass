@@ -12,7 +12,8 @@
         "php": "^7.4",
         "ext-json": "*",
         "ahmard/queliwrap": "^2.0",
-        "fabpot/goutte": "^4.0"
+        "fabpot/goutte": "^4.0",
+        "james-heinrich/getid3": "^1.9"
     },
     "autoload": {
         "psr-4": {
