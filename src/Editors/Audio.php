@@ -77,7 +77,7 @@ class Audio
      */
     public function setLyric(string $lyric)
     {
-        $this->tagData['unsychronised_lyric'] = [$lyric];
+        $this->tagData['unsynchronised_lyric'] = [$lyric];
         return $this;
     }
 
