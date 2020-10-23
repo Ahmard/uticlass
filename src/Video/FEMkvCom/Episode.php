@@ -10,7 +10,8 @@ class Episode
 
     public static function getLinks($href)
     {
-        //$href = 'http://localhost/ahmard/amutils/storage/temp/2-another-life.html';
+        self::$links = [];
+        
         Client::request(function ($gr) use ($href) {
             $gr->get($href);
         })->then(function ($ql) {
@@ -22,6 +23,7 @@ class Episode
                     ];
                 });
         });
+        
         return self::$links;
     }
 }
