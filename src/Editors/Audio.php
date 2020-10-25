@@ -2,8 +2,8 @@
 
 namespace Uticlass\Editors;
 
-require_once(dirname(__FILE__, 3) . '/vendor/james-heinrich/getid3/getid3/getid3.php');
-require_once(dirname(__FILE__, 3) . '/vendor/james-heinrich/getid3/getid3/write.php');
+require_once(dirname(__FILE__, 5) . '/james-heinrich/getid3/getid3/getid3.php');
+require_once(dirname(__FILE__, 5) . '/james-heinrich/getid3/getid3/write.php');
 
 /**
  * Manipulate audio files tags
