@@ -11,7 +11,7 @@ use Uticlass\News\{
 
 class News
 {
-    protected static $methods = [
+    protected static array $methods = [
         'bbchausa' => BBCHausa::class, 
         'rfihausa' => RFIHausa::class, 
         'dwhausa' => DWHausa::class,

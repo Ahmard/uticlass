@@ -15,15 +15,13 @@ class FZMovies
 
     protected ?string $downloadLink;
 
-    protected int $downloadOption = 1;
-
     public function __construct(string $url)
     {
         $this->ICConstructor($url);
         $this->extractLinks();
     }
 
-    private function extractLinks()
+    private function extractLinks(int $chosenLink = 1)
     {
         $client = new Client;
 
@@ -36,7 +34,7 @@ class FZMovies
         $linkTwo = $crawlerTwo->selectLink($linkTextTwo)->link();
 
         $crawlerThree = $client->click($linkTwo);
-        $linkTextThree = $crawlerThree->filter("#dlink{$this->downloadOption}")->text();
+        $linkTextThree = $crawlerThree->filter("#dlink{$chosenLink}")->text();
         $linkThree = $crawlerThree->selectLink($linkTextThree)->link();
 
         $crawlerFour = $client->click($linkThree);
