@@ -18,10 +18,9 @@ class FZMovies
     public function __construct(string $url)
     {
         $this->ICConstructor($url);
-        $this->extractLinks();
     }
 
-    private function extractLinks(int $chosenLink = 1)
+    private function get(int $chosenLink = 1)
     {
         $client = new Client;
 
@@ -39,10 +38,7 @@ class FZMovies
 
         $crawlerFour = $client->click($linkThree);
         $this->downloadLink = $crawlerFour->filter('a')->eq(0)->attr('href');
-    }
 
-    public function get($format = 'mp4')
-    {
         return $this->downloadLink;
     }
 }

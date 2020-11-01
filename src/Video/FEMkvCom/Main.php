@@ -13,7 +13,7 @@ class Main
 
     protected array $links = array();
 
-    public function get(callable $callback)
+    public function get()
     {
         Client::get($this->url)->exec()
             ->find('#content')
@@ -31,9 +31,7 @@ class Main
                 }
             });
 
-        if ($callback) $callback($this->episodes);
-
-        return $this;
+        return $this->episodes;
     }
 
     public function save(string $path)
