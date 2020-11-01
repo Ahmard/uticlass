@@ -20,7 +20,7 @@ class FZMovies
         $this->ICConstructor($url);
     }
 
-    private function get(int $chosenLink = 1)
+    public function get(int $chosenLink = 1)
     {
         $client = new Client;
 
