@@ -18,31 +18,31 @@ Now, let's install uticlas:
 composer require ahmard/uticlass
 ```
 
-After installing, require Composer's autoloader in your code:
-
-```php
-require 'vendor/autoload.php';
-```
-
 # Usage
 ```php
+use Uticlass\Others\ZippyShare;
 use Uticlass\Video\FZMovies;
-use Uticlass\Video\NetNaija;
 use Uticlass\Lyrics\Genius;
+use Uticlass\Video\NetNaija;
 
-//Extract download links
+require 'vendor/autoload.php';
+
+//Extract links and data
 
 //Fzmovies
 $fzUrl = 'https://fzmovies.net/movie-Moana%202016--hmp4.htm';
-$dlLink1 = new (FZMovies($fzUrl))->get();
+$dlLink1 = FZMovies::init($fzUrl)->get();
 
 //Netnaija
 $nnUrl = 'https://www.thenetnaija.com/videos/movies/6856-hot-summer-nights-2017';
-$dlLink2 = new(NetNaija($nnUrl))->get()->linkTwo();
+$dlLink2 = NetNaija::init($nnUrl)->get()->linkTwo();
 
 //Genius lyrics
-$lyrics = Genius::get('https://genius.com/Taylor-swift-the-last-great-american-dynasty-lyrics');
+$lyrics = Genius::init('https://genius.com/Taylor-swift-the-last-great-american-dynasty-lyrics')->get();
 
+//ZippyShare
+$zippyUrl = 'https://www118.zippyshare.com/v/5pwuoWgg/file.html';
+$fileUrl = ZippyShare::init($zippyUrl)->get();
 ```
 
 ## [Examplez](examples)

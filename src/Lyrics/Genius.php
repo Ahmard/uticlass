@@ -3,6 +3,8 @@
 namespace Uticlass\Lyrics;
 
 use Queliwrap\Client;
+use Throwable;
+use Uticlass\Core\Struct\Traits\InstanceCreator;
 
 /**
  * Lyrics from https//genius.com
@@ -10,23 +12,22 @@ use Queliwrap\Client;
  */
 class Genius
 {
+    use InstanceCreator;
+
     /**
      * Get lyrics
-     * @param string $url
-     * @return string|\Throwable
+     * @return string|Throwable
      */
-    public static function get(string $url)
+    public function get()
     {
         $theLyrics = null;
-        Client::request(function ($gz) use($url){
-            $gz->get($url);
-        })->then(function($ql) use(&$theLyrics){
-            $lyrics = $ql->find('.lyrics')->html();
-            $theLyrics = strip_tags($lyrics);
-        })->otherwise(function(\Throwable $exception) use (&$theLyrics){
-            $theLyrics = $exception;
-        });
-        
+
+        $lyrics = Client::get($this->url)->exec()
+            ->find('.lyrics')
+            ->html();
+
+        $theLyrics = strip_tags($lyrics);
+
         return $theLyrics;
     }
 }

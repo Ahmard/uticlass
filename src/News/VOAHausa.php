@@ -1,49 +1,52 @@
 <?php
+
 namespace Uticlass\News;
 
 use Queliwrap\Client;
-use Uticlass\Struct\Abstracts\NewsAbstract;
+use Throwable;
+use Uticlass\Core\Struct\Abstracts\NewsAbstract;
+use Uticlass\Core\Struct\Traits\InstanceCreator;
 
 class VOAHausa extends NewsAbstract
 {
-    protected $websiteUrl;
-    
-    protected $newsList = array();
-    
-    protected $error = null;
-    
+    use InstanceCreator {
+        __construct as ICConstruct;
+    }
+
+    protected array $newsList = array();
+
+    protected ?Throwable $error = null;
+
 
     public function __construct()
     {
-        $this->websiteUrl = 'https://www.voahausa.com/';
+        $this->ICConstruct('https://www.voahausa.com/');
     }
-        
-    public function fetch() : object
+
+    public function fetch(): object
     {
-        $client = Client::get($this->websiteUrl);
-        
-        $client->then(function($ql){
-            $ql->find('div.media-block__content')->each(function($li){
-                //Link and text
-                $a = $li->find('a');
-                $text = trim($a->find('h4')->eq(0)->text());
-                $href = $this->makeUrl($a->attr('href'));
-                //Time
-                $time = trim($li->find('span')->eq(0)->text());
-                if($text && $time){
-                    $this->newsList[] = [
-                        'text' => $text,
-                        'href' => $href,
-                        'time' => $time
-                    ];
-                }
-            });
-        });
-        
-        $client->otherwise(function($err){
-            $this->error = $err;
-        });
-        
+        try {
+            Client::get($this->url)->exec()
+                ->find('div.media-block__content')
+                ->each(function ($li) {
+                    //Link and text
+                    $a = $li->find('a');
+                    $text = trim($a->find('h4')->eq(0)->text());
+                    $href = $this->makeUrl($a->attr('href'));
+                    //Time
+                    $time = trim($li->find('span')->eq(0)->text());
+                    if ($text && $time) {
+                        $this->newsList[] = [
+                            'text' => $text,
+                            'href' => $href,
+                            'time' => $time
+                        ];
+                    }
+                });
+        } catch (Throwable $exception) {
+            $this->error = $exception;
+        }
+
         return $this;
     }
 }

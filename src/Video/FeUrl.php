@@ -1,16 +1,19 @@
 <?php
+
 namespace Uticlass\Video;
 
 use GuzzleHttp\Client;
+use Uticlass\Core\Struct\Traits\InstanceCreator;
 
 class FeUrl
 {
-    protected $url;
+    use InstanceCreator;
 
-    public function get($url) {
-        if ($url) {
-            $expUrl = explode('/', $url);
-            $url = 'https://feurl.com/api/source/'.end($expUrl);
+    public function get()
+    {
+        if ($this->url) {
+            $expUrl = explode('/', $this->url);
+            $url = 'https://feurl.com/api/source/' . end($expUrl);
 
             $client = new Client();
             $request = $client->request('POST', $url);
@@ -19,7 +22,7 @@ class FeUrl
 
             return $objectResponse->data;
         }
-        
+
         return false;
     }
 }

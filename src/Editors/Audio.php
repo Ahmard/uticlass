@@ -2,6 +2,8 @@
 
 namespace Uticlass\Editors;
 
+use Exception;
+
 require_once(dirname(__FILE__, 5) . '/james-heinrich/getid3/getid3/getid3.php');
 require_once(dirname(__FILE__, 5) . '/james-heinrich/getid3/getid3/write.php');
 
@@ -71,7 +73,7 @@ class Audio
     }
 
     /**
-     * A covenient method to edit mp3 file lyric
+     * A convenient method to edit mp3 file lyric
      * @param string $lyric
      * @return $this
      */

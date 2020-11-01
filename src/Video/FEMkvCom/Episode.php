@@ -6,24 +6,21 @@ use Queliwrap\Client;
 
 class Episode
 {
-    protected static $links;
+    protected static array $links;
 
     public static function getLinks($href)
     {
         self::$links = [];
-        
-        Client::request(function ($gr) use ($href) {
-            $gr->get($href);
-        })->then(function ($ql) {
-            $ql->find('p > a')
-                ->each(function ($node) {
-                    self::$links[] = [
-                        'name' => $node->text(),
-                        'href' => $node->attr('href')
-                    ];
-                });
-        });
-        
+
+        Client::get($href)->exec()
+            ->find('p > a')
+            ->each(function ($node) {
+                self::$links[] = [
+                    'name' => $node->text(),
+                    'href' => $node->attr('href')
+                ];
+            });
+
         return self::$links;
     }
 }

@@ -7,6 +7,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 
 class Muzmo
 {
+    use Eve
     public static function rename($folderPath) 
     {
         console()->comment('Renaming files...')->newLine();

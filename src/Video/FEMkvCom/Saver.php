@@ -24,13 +24,7 @@ class Saver
 
     public static function methodOne()
     {
-        $fileName = self::getFileName();
-        $displayName = substr($fileName, 0, -5);
-        $displayName = str_replace('-', ' ', $displayName);
-        $displayName = ucwords($displayName);
-        $html = 'TV Show: <a href="'.self::$url.'">'.$displayName.'</a><hr/>';
-        $html .= 'Generated on: ' . date('H:i:s d/m/Y') . '<hr/>';
-        $html .= '<ol>';
+        $html = '<ol>';
         foreach (self::$episodes as $episode) {
             $episode = (array)$episode;
             $html .= '<li>' . $episode['name'] . '</li>';
@@ -46,12 +40,12 @@ class Saver
             self::$path .= DIRECTORY_SEPARATOR;
         }
 
-        file_put_contents(self::$path . $fileName, $html);
+        file_put_contents(self::$path . self::getFileName(), $html);
     }
 
 
     public static function getFileName()
     {
-        return explode('/', self::$url)[3] . '.html';
+        return explode('/', self::$url)[3] . '-' . time() . '.html';
     }
 }

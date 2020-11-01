@@ -1,41 +1,43 @@
 <?php
+
 namespace Uticlass\News;
 
-use Uticlass\Struct\Abstracts\NewsAbstract;
 use Queliwrap\Client;
+use Throwable;
+use Uticlass\Core\Struct\Abstracts\NewsAbstract;
+use Uticlass\Core\Struct\Traits\InstanceCreator;
 
 class RFIHausa extends NewsAbstract
 {
-    protected $websiteUrl;
-    
-    protected $newsList = array();
-    
-    protected $error = null;
-    
-    
+    use InstanceCreator {
+        __construct as ICConstructor;
+    }
+
+    protected array $newsList = array();
+
+    protected ?Throwable $error = null;
+
     public function __construct()
     {
-        $this->websiteUrl = 'http://www.rfi.fr/ha/';
+        $this->ICConstructor('https://m.dw.com/ha/');
     }
-    
-    public function fetch() : object
+
+    public function fetch(): object
     {
-        $client = Client::get($this->websiteUrl);
-        
-        $client->then(function($ql){
-            $ql->find('.m-item-list-article')->each(function($div){
-                $this->newsList[] = [
-                    'text' => $div->find('p:eq(0)')->text(),
-                    'href' => $this->makeUrl($div->find('a:eq(0)')->attr('href'))
-                ];
-            });
-        });
-        
-        $client->otherwise(function($err){
-            $this->error = $err;
-        });
-        
+        try {
+            Client::get($this->url)->exec()
+                ->find('.m-item-list-article')
+                ->each(function ($div) {
+                    $this->newsList[] = [
+                        'text' => $div->find('p:eq(0)')->text(),
+                        'href' => $this->makeUrl($div->find('a:eq(0)')->attr('href'))
+                    ];
+                });
+        } catch (Throwable $exception) {
+            $this->error = $exception;
+        }
+
         return $this;
     }
-    
+
 }

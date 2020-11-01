@@ -1,41 +1,41 @@
 <?php
-namespace App\Struct\Abstracts;
 
-use App\Utils\News\NewsFactory;
-use App\Struct\Interfaces\NewsInterface;
+namespace Uticlass\Core\Struct\Abstracts;
+
+use Uticlass\Core\Struct\Interfaces\NewsInterface;
 
 abstract class NewsAbstract implements NewsInterface
 {
-    public function getAll() : array
+    public function getAll(): array
     {
         return $this->newsList;
     }
-    
-    
-    public function getNews(\integer $newsKey) : NewsFactory
+
+
+    public function getNews(int $newsKey): array
     {
-        return new NewsFactory($this->newsList[$newsKey] ?? []);
+        return $this->newsList[$newsKey] ?? [];
     }
-    
-    
-    public function getWebsiteUrl() : string
+
+
+    public function getWebsiteUrl(): string
     {
-        return $this->websiteUrl;
+        return $this->url;
     }
-    
-    
+
+
     public function getError()
     {
         return $this->error;
     }
-    
-    
-    public function makeUrl(string $url) : string
+
+
+    public function makeUrl(string $url): string
     {
-        if(! strpos($url, 'http://') || strpos($url, 'https://')){
-            return $this->websiteUrl . $url;
+        if (!strpos($url, 'http://') || strpos($url, 'https://')) {
+            return $this->url . $url;
         }
-        
+
         return $url;
     }
 }

@@ -11,7 +11,7 @@
     "require": {
         "php": "^7.4",
         "ext-json": "*",
-        "ahmard/queliwrap": "^2.0",
+        "ahmard/queliwrap": "^3.0",
         "fabpot/goutte": "^4.0",
         "james-heinrich/getid3": "^1.9"
     },
