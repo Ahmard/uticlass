@@ -21,6 +21,7 @@ composer require ahmard/uticlass
 # Usage
 ```php
 use Uticlass\Others\ZippyShare;
+use Uticlass\Video\CoolMoviez;
 use Uticlass\Video\FZMovies;
 use Uticlass\Lyrics\Genius;
 use Uticlass\Video\NetNaija;
@@ -36,6 +37,10 @@ $dlLink1 = FZMovies::init($fzUrl)->get();
 //Netnaija
 $nnUrl = 'https://www.thenetnaija.com/videos/movies/6856-hot-summer-nights-2017';
 $dlLink2 = NetNaija::init($nnUrl)->get()->linkTwo();
+
+//Mycoolmoviez
+$mcUrl = 'https://www.coolmoviez.shop/movie/4715/Megafault_(2009)_english_movie.html';
+$dlLink3 = CoolMoviez::init($mcUrl)->get();
 
 //Genius lyrics
 $lyrics = Genius::init('https://genius.com/Taylor-swift-the-last-great-american-dynasty-lyrics')->get();

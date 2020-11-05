@@ -15,8 +15,6 @@ class ZippyShare
     {
         $html = Client::get($this->url)->exec()->getHtml();
 
-        file_put_contents('/home/ahmard/projects/mine/uticlass/zippy_1.html', $html);
-
         //Get video first param
         preg_match("@var a = ([0-9]+)@", $html, $matchFirstParam);
         $a = $matchFirstParam[1];
