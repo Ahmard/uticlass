@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "ahmard/guzwrap",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ahmard/guzwrap.git",
-                "reference": "a1ab8d888d2c4829edcbb9638ce191229ccd8789"
+                "reference": "0720ac7a6dd4b31834dd4248632460926a750e63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ahmard/guzwrap/zipball/a1ab8d888d2c4829edcbb9638ce191229ccd8789",
-                "reference": "a1ab8d888d2c4829edcbb9638ce191229ccd8789",
+                "url": "https://api.github.com/repos/Ahmard/guzwrap/zipball/0720ac7a6dd4b31834dd4248632460926a750e63",
+                "reference": "0720ac7a6dd4b31834dd4248632460926a750e63",
                 "shasum": ""
             },
             "require": {
@@ -38,9 +38,9 @@
             "description": "A wrapper around popular php http client, \"GuzzleHttp\"",
             "support": {
                 "issues": "https://github.com/Ahmard/guzwrap/issues",
-                "source": "https://github.com/Ahmard/guzwrap/tree/1.2.1"
+                "source": "https://github.com/Ahmard/guzwrap/tree/1.2.2"
             },
-            "time": "2020-11-01T13:24:06+00:00"
+            "time": "2020-11-05T23:32:37+00:00"
         },
         {
             "name": "ahmard/queliwrap",
