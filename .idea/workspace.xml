@@ -19,13 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8474d5c4-3790-4fbc-94ca-00a70e331903" name="Default Changelist" comment="" />
+    <list default="true" id="8474d5c4-3790-4fbc-94ca-00a70e331903" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -94,6 +97,9 @@
       <option name="presentableId" value="Default" />
       <updated>1604247870084</updated>
       <workItem from="1604247871250" duration="2241000" />
+      <workItem from="1604615595840" duration="10736000" />
+      <workItem from="1605723151526" duration="1101000" />
+      <workItem from="1605725429235" duration="753000" />
     </task>
     <servers />
   </component>
@@ -110,11 +116,30 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="324" width="312" height="154" key="NewPhpFileDialog" timestamp="1604250051761">
+    <state x="484" y="143" width="438" height="524" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604625159587">
       <screen x="60" y="27" width="1306" height="741" />
     </state>
-    <state x="552" y="324" width="312" height="154" key="NewPhpFileDialog/60.27.1306.741@60.27.1306.741" timestamp="1604250051761" />
+    <state x="484" y="143" width="438" height="524" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/60.27.1306.741@60.27.1306.741" timestamp="1604625159587" />
+    <state x="444" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605724045427">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state x="444" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/56.27.1310.741@56.27.1310.741" timestamp="1605724045427" />
+    <state x="491" y="128" width="488" height="545" key="NewPhpClassDialog" timestamp="1605723202473">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state x="491" y="128" key="NewPhpClassDialog/56.27.1310.741@56.27.1310.741" timestamp="1605723202473" />
+    <state x="494" y="128" width="488" height="545" key="NewPhpClassDialog/60.27.1306.741@60.27.1306.741" timestamp="1604624992549" />
+    <state x="550" y="324" width="312" height="154" key="NewPhpFileDialog" timestamp="1605723211441">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state x="550" y="324" key="NewPhpFileDialog/56.27.1310.741@56.27.1310.741" timestamp="1605723211441" />
+    <state x="552" y="324" width="312" height="154" key="NewPhpFileDialog/60.27.1306.741@60.27.1306.741" timestamp="1604621784335" />
+    <state x="374" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1605726002219">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state x="374" y="89" width="672" height="678" key="search.everywhere.popup/56.27.1310.741@56.27.1310.741" timestamp="1605726002219" />
   </component>
 </project>
