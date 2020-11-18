@@ -34,8 +34,14 @@ class NetNaija
             $count = 1;
             Request::get($link)
                 ->onHeaders(function (ResponseInterface $response) use (&$count) {
-                    $this->foundLink = $response->getHeaderLine('location');
+                    $link = $response->getHeaderLine('location');
+                    if (strstr($link, 'sabishare')) {
+                        $this->foundLink = $link;
+                        throw new Exception($this->foundLink);
+                    }
+
                     if ($count === 2) {
+                        $this->foundLink = $response->getHeaderLine('location');
                         throw new Exception($this->foundLink);
                     }
                     $count++;
@@ -62,6 +68,13 @@ class NetNaija
         $url ??= $this->foundLink;
         $explodedUrl = explode('/', $url);
         $videoId = end($explodedUrl);
+        if (false !== strpos($videoId, 'com-mp4')) {
+            $path = parse_url($url)['path'];
+            $explodedUrl = explode('/', $path);
+            $explodedUrl = explode('-', $explodedUrl[2]);
+            $videoId = $explodedUrl[0];
+        }
+
         $constructedApiUrl = "https://api.sabishare.com/token/download/{$videoId}";
 
         $jsonResponse = Request::get($constructedApiUrl)
