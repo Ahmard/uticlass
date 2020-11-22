@@ -30,6 +30,9 @@ class NetNaija
             ->find('a.button:nth-child(4)')
             ->attr('href');
 
+        //Needed to fix uninitialized var access error
+        $this->foundLink = '';
+
         try {
             $count = 1;
             Request::get($link)
