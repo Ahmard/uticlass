@@ -82,6 +82,7 @@ class FZMoviesSearch
                 $movieDesc = trim(strip_tags($secondTd->html()));
                 
                 $searchResults[] = [
+                    'title' => $secondTd->find('small')->eq(0)->text(),
                     'href' => $movieHref,
                     'image' => $movieImage,
                     'desc' => $movieDesc

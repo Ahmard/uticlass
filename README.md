@@ -54,6 +54,7 @@ $fileUrl = ZippyShare::init($zippyUrl)->get();
 ```php
 
 use Uticlass\Video\Search\FZMoviesSearch;
+use Uticlass\Video\Search\FEMKVComSearch;
 
 require 'vendor/autoload.php';
 
@@ -61,6 +62,11 @@ require 'vendor/autoload.php';
 $searchResults = FZMoviesSearch::create()
     ->search('wrong')
     ->get(2);
+
+//480mkv.com
+$searchResults = FEMKVComSearch::create()
+    ->search('love')
+    ->get();
 ```
 ## [Examplez](examples)
 
