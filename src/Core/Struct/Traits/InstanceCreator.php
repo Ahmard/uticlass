@@ -18,8 +18,19 @@ trait InstanceCreator
      * @param string $url
      * @return static
      */
-    public static function init(string $url = '')
+    public static function init(string $url = ''): self
     {
         return new static($url);
+    }
+    
+    
+    /**
+     * Instantiate this class
+     * @param string $url
+     * @return static
+     */
+    public static function create(): self
+    {
+        return new static('');
     }
 }

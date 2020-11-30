@@ -50,6 +50,18 @@ $zippyUrl = 'https://www118.zippyshare.com/v/5pwuoWgg/file.html';
 $fileUrl = ZippyShare::init($zippyUrl)->get();
 ```
 
+## Searching
+```php
+
+use Uticlass\Video\Search\FZMoviesSearch;
+
+require 'vendor/autoload.php';
+
+//FZMovies
+$searchResults = FZMoviesSearch::create()
+    ->search('wrong')
+    ->get(2);
+```
 ## [Examplez](examples)
 
 ### USIHOYUSEF :)
