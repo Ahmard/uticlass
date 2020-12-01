@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8474d5c4-3790-4fbc-94ca-00a70e331903" name="Default Changelist" comment="" />
+    <list default="true" id="8474d5c4-3790-4fbc-94ca-00a70e331903" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,6 +100,8 @@
       <workItem from="1605723151526" duration="1101000" />
       <workItem from="1605725429235" duration="1946000" />
       <workItem from="1605728354407" duration="15644000" />
+      <workItem from="1606008137728" duration="281000" />
+      <workItem from="1606077636052" duration="95000" />
     </task>
     <servers />
   </component>
@@ -136,6 +140,10 @@
     </state>
     <state x="550" y="324" width="312" height="154" key="NewPhpFileDialog/56.27.1310.741@56.27.1310.741" timestamp="1605745181207" />
     <state x="552" y="324" width="312" height="154" key="NewPhpFileDialog/60.27.1306.741@60.27.1306.741" timestamp="1604621784335" />
+    <state x="156" y="127" width="1110" height="541" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1606008418539">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state x="156" y="127" width="1110" height="541" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/56.27.1310.741@56.27.1310.741" timestamp="1606008418539" />
     <state x="364" y="27" width="683" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1605731993100">
       <screen x="56" y="27" width="1310" height="741" />
     </state>
