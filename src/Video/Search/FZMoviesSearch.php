@@ -2,6 +2,7 @@
 
 namespace Uticlass\Video\Search;
 
+use Nette\Utils\Strings;
 use Queliwrap\Client;
 use Throwable;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
@@ -29,7 +30,7 @@ class FZMoviesSearch
     public const SEARCH_BY_DIRECTOR = 'Director';
     public const SEARCH_BY_STARCAST = 'Starcast';
 
-    public function search(string $query)
+    public function search(string $query): FZMoviesSearch
     {
         $this->query = $query;
         return $this;
@@ -38,10 +39,10 @@ class FZMoviesSearch
     /**
      * Category to perform searching in,
      * leave empty to search in all categories
+     * @param string $category
      * @return $this
-     * @var string $query
      */
-    public function searchIn(string $category): self
+    public function searchIn(string $category): FZMoviesSearch
     {
         $this->searchIn = $category;
         return $this;
@@ -51,9 +52,9 @@ class FZMoviesSearch
     /**
      * Search by Starcast, Director or Movie name
      * @return $this
-     * @var string $query
+     * @param  string $query
      */
-    public function searchBy(string $query): self
+    public function searchBy(string $query): FZMoviesSearch
     {
         $this->searchBy = $query;
         return $this;
@@ -61,9 +62,9 @@ class FZMoviesSearch
 
     /**
      * Perform the search
-     * @return array
      * @throws Throwable
-     * @var int $pageNumber Navigate through search resultz
+     * @param  int $pageNumber Navigate through search results
+     * @return array
      */
     public function get(int $pageNumber = 1): array
     {
@@ -83,12 +84,13 @@ class FZMoviesSearch
                 $secondTd = $div->find('td')->eq(1);
                 $firstLink = $firstTd->find('a');
 
-                $movieHref = $this->fzHost . $firstLink->attr('href');
-                $movieImage = $this->fzHost . $firstLink->find('img')->attr('src');
-                $movieDesc = trim(strip_tags($secondTd->html()));
+                $title = Strings::fixEncoding($secondTd->find('small')->eq(0)->text());
+                $movieHref = Strings::fixEncoding($this->fzHost . $firstLink->attr('href'));
+                $movieImage = Strings::fixEncoding($this->fzHost . $firstLink->find('img')->attr('src'));
+                $movieDesc = Strings::fixEncoding(trim(strip_tags($secondTd->html())));
 
                 $searchResults[] = [
-                    'title' => $secondTd->find('small')->eq(0)->text(),
+                    'title' => $title,
                     'href' => $movieHref,
                     'image' => $movieImage,
                     'desc' => $movieDesc
@@ -99,7 +101,7 @@ class FZMoviesSearch
             ->find('html body div.mainbox2 small div form')
             ->text();
         preg_match("@([0-9]+)@", $totalPages, $matches);
-        $totalPages = $matches[0] ?? 0;
+        $totalPages = (int)$matches[0] ?? 0;
 
 
         return [

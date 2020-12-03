@@ -16,16 +16,16 @@ class Importer
     public static function __callStatic($method, $args)
     {
         $method = "_{$method}";
-        return (new static())->$method(...$args);
+        return (new self())->$method(...$args);
     }
 
-    public function _import($url)
+    public function _import($url): Importer
     {
         $this->url = $url;
         return $this;
     }
 
-    public function save($file)
+    public function save($file): bool
     {
         Client::get($this->url)->sink($file)->exec();
 

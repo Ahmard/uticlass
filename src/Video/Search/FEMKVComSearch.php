@@ -2,8 +2,10 @@
 
 namespace Uticlass\Video\Search;
 
+use Nette\Utils\Strings;
 use QL\Dom\Elements;
 use Queliwrap\Client;
+use Throwable;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
 class FEMKVComSearch
@@ -14,7 +16,7 @@ class FEMKVComSearch
 
     private string $urlTemplate = 'https://480mkv.com/page/{pageNumber}/?s={query}';
 
-    public function search(string $query)
+    public function search(string $query): FEMKVComSearch
     {
         $this->query = $query;
         return $this;
@@ -23,7 +25,7 @@ class FEMKVComSearch
     /**
      * Perform the search
      * @return array
-     * @throws \Throwable
+     * @throws Throwable
      * @var int $pageNumber Navigate through search results
      */
     public function get(int $pageNumber = 1): array
@@ -42,10 +44,10 @@ class FEMKVComSearch
 
                 $movieHref = $firstLink->attr('href');
                 $movieImage = $firstLink->find('img')->attr('src');
-                $movieDesc = trim(strip_tags($article->find('p')->html()));
+                $movieDesc = Strings::fixEncoding(trim(strip_tags($article->find('p')->html())));
 
                 $searchResults[] = [
-                    'title' => $secondLink->text(),
+                    'title' => Strings::fixEncoding($secondLink->text()),
                     'href' => $movieHref,
                     'image' => $movieImage,
                     'desc' => $movieDesc
@@ -56,7 +58,7 @@ class FEMKVComSearch
         $dom->find('ul.page-numbers li')
             ->each(function (Elements $element) use (&$totalPages) {
                 if ('' !== $element->text() && '…' !== $element->text()) {
-                    $totalPages[] = $element->text();
+                    $totalPages[] = Strings::fixEncoding($element->text());
                 }
             });
 
