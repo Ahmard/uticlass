@@ -15,8 +15,10 @@ class FZMoviesSearch
     private string $searchIn = 'All';
 
     private string $searchBy = 'Name';
+    
+    private string $fzHost = 'https://fzmovies.net/';
 
-    private string $urlTemplate = 'https://fzmovies.net/csearch.php?searchname={query}&searchby={searchBy}&category={searchIn}&pg={pageNumber}';
+    private string $urlTemplate = 'csearch.php?searchname={query}&searchby={searchBy}&category={searchIn}&pg={pageNumber}';
 
     public const SEARCH_IN_ALL = 'All';
     public const SEARCH_IN_HOLLYWOOD = 'Hollywood';
@@ -65,7 +67,8 @@ class FZMoviesSearch
      */
     public function get(int $pageNumber = 1): array
     {
-        $url = str_replace('{query}', $this->query, $this->urlTemplate);
+        $url = $this->fzHost . $this->urlTemplate;
+        $url = str_replace('{query}', $this->query, $url);
         $url = str_replace('{searchIn}', $this->searchIn, $url);
         $url = str_replace('{searchBy}', $this->searchBy, $url);
         $url = str_replace('{pageNumber}', $pageNumber, $url);
@@ -80,8 +83,8 @@ class FZMoviesSearch
                 $secondTd = $div->find('td')->eq(1);
                 $firstLink = $firstTd->find('a');
 
-                $movieHref = $firstLink->attr('href');
-                $movieImage = $firstLink->find('img')->attr('src');
+                $movieHref = $this->fzHost . $firstLink->attr('href');
+                $movieImage = $this->fzHost . $firstLink->find('img')->attr('src');
                 $movieDesc = trim(strip_tags($secondTd->html()));
 
                 $searchResults[] = [
