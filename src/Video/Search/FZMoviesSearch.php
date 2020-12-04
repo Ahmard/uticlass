@@ -101,7 +101,7 @@ class FZMoviesSearch
             ->find('html body div.mainbox2 small div form')
             ->text();
         preg_match("@([0-9]+)@", $totalPages, $matches);
-        $totalPages = (int)$matches[0] ?? 0;
+        $totalPages = (int)($matches[0] ?? 0);
 
 
         return [
