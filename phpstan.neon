@@ -1,5 +1,8 @@
 parameters:
-    level: 1
+    level: 6
+    checkMissingIterableValueType: false
+    ignoreErrors:
+    		- '#Unsafe usage of new static\(\)#'
     paths:
         - examples
         - src

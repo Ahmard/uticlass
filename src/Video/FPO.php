@@ -9,9 +9,9 @@ class FPO
 {
     use InstanceCreator;
 
-    public function get()
+    public function get(): array
     {
-        $ql = Client::get($this->url)->exec();
+        $ql = Client::get($this->url)->execute();
         $downloadLinks = null;
 
         $html = $ql->getHtml();

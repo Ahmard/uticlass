@@ -23,10 +23,10 @@ class NetNaija
      * @return $this
      * @throws Throwable
      */
-    public function get()
+    public function get(): NetNaija
     {
         $link = Client::get($this->url)
-            ->exec()
+            ->execute()
             ->find('a.button:nth-child(4)')
             ->attr('href');
 
@@ -58,15 +58,15 @@ class NetNaija
 
     /**
      * Get final download link
-     * @param null $url
-     * @return mixed
+     * @param string|null $url
+     * @return string
      */
-    public function linkTwo($url = null)
+    public function linkTwo(?string $url = null): string
     {
         return $this->getDownloadLink($url);
     }
 
-    private function getDownloadLink($url = null)
+    private function getDownloadLink(?string $url = null): string
     {
         $url ??= $this->foundLink;
         $explodedUrl = explode('/', $url);

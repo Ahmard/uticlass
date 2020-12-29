@@ -13,21 +13,21 @@ class Importer
 {
     protected string $url;
 
-    public static function __callStatic($method, $args)
+    public static function __callStatic(string $method, array $args): Importer
     {
         $method = "_{$method}";
-        return (new self())->$method(...$args);
+        return (new Importer())->$method(...$args);
     }
 
-    public function _import($url): Importer
+    public function _import(string $url): Importer
     {
         $this->url = $url;
         return $this;
     }
 
-    public function save($file): bool
+    public function save(string $file): bool
     {
-        Client::get($this->url)->sink($file)->exec();
+        Client::get($this->url)->sink($file)->execute();
 
         return true;
     }

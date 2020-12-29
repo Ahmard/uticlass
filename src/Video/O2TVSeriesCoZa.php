@@ -26,7 +26,7 @@ class O2TVSeriesCoZa
         $parsed = parse_url($this->url);
         $this->domain = "{$parsed['scheme']}://{$parsed['host']}";
 
-        Client::get($this->url)->exec()
+        Client::get($this->url)->execute()
             ->find('ul[data-role="listview"]')
             ->eq(0)
             ->find('li')
@@ -50,7 +50,7 @@ class O2TVSeriesCoZa
     public function getEpisodes(string $seasonUrl)
     {
         $episodes = [];
-        Client::get($seasonUrl)->exec()
+        Client::get($seasonUrl)->execute()
             ->find('ul[data-role="listview"]')
             ->eq(0)
             ->find('li')
@@ -76,7 +76,7 @@ class O2TVSeriesCoZa
     {
 
         $links = [];
-        Client::get($episodeUrl)->exec()
+        Client::get($episodeUrl)->execute()
             ->find('ul[data-role="listview"]')
             ->eq(0)
             ->find('li')

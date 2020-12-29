@@ -8,11 +8,11 @@ class Episode
 {
     protected static array $links;
 
-    public static function getLinks($href)
+    public static function getLinks(string $href): array
     {
         self::$links = [];
 
-        Client::get($href)->exec()
+        Client::get($href)->execute()
             ->find('p > a')
             ->each(function ($node) {
                 self::$links[] = [

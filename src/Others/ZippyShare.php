@@ -11,9 +11,9 @@ class ZippyShare
 
     protected string $fileUrl;
 
-    public function get()
+    public function get(): string
     {
-        $html = Client::get($this->url)->exec()->getHtml();
+        $html = Client::get($this->url)->execute()->getHtml();
 
         //Get video first param
         preg_match("@var a = ([0-9]+)@", $html, $matchFirstParam);

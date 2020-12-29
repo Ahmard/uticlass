@@ -13,9 +13,9 @@ class Main
 
     protected array $links = array();
 
-    public function get()
+    public function get(): array
     {
-        Client::get($this->url)->exec()
+        Client::get($this->url)->execute()
             ->find('#content')
             ->find('ol')->eq(0)
             ->find('li')
@@ -34,7 +34,7 @@ class Main
         return $this->episodes;
     }
 
-    public function save(string $path)
+    public function save(string $path): void
     {
         Saver::save($this->episodes, $this->url, $path);
     }

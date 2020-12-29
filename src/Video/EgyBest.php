@@ -13,9 +13,9 @@ class EgyBest
 
     private array $links = [];
 
-    public function get()
+    public function get(): EgyBest
     {
-        Client::get($this->url)->exec()
+        Client::get($this->url)->execute()
             ->find('table.dls_table.btns.full.mgb tr')
             ->each(function (Elements $element) {
                 $apiUrl = $element->find('td')
@@ -44,13 +44,13 @@ class EgyBest
         return $this;
     }
 
-    private function getActualUrl()
+    private function getActualUrl(): void
     {
         for ($i = 0; $i < count($this->links); $i++) {
             Client::get($this->links[$i]['api_url'])
                 ->header([
                     'Content-Type' => 'application/json'
-                ])->exec();
+                ])->execute();
         }
     }
 
@@ -59,9 +59,9 @@ class EgyBest
     /**
      * Choose link with specific quality
      * @param string $quality
-     * @return array|mixed
+     * @return array
      */
-    public function chooseQuality(string $quality)
+    public function chooseQuality(string $quality): array
     {
         foreach ($this->links as $link) {
             if (strtolower($link['quality']) === strtolower($quality)) {

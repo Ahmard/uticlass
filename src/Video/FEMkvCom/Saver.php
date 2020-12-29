@@ -13,7 +13,7 @@ class Saver
     protected static string $path;
 
 
-    public static function save(array $episodes, string $url, string $path)
+    public static function save(array $episodes, string $url, string $path): void
     {
         self::$episodes = $episodes;
         self::$path = $path;
@@ -22,7 +22,7 @@ class Saver
         self::methodOne();
     }
 
-    public static function methodOne()
+    public static function methodOne(): void
     {
         $html = '<ol>';
         foreach (self::$episodes as $episode) {
@@ -44,7 +44,7 @@ class Saver
     }
 
 
-    public static function getFileName()
+    public static function getFileName(): string
     {
         return explode('/', self::$url)[3] . '-' . time() . '.html';
     }

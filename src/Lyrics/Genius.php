@@ -22,7 +22,7 @@ class Genius
     {
         $theLyrics = null;
 
-        $lyrics = Client::get($this->url)->exec()
+        $lyrics = Client::get($this->url)->execute()
             ->find('.lyrics')
             ->html();
 

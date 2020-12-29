@@ -26,7 +26,7 @@ class VOAHausa extends NewsAbstract
     public function fetch(): object
     {
         try {
-            Client::get($this->url)->exec()
+            Client::get($this->url)->execute()
                 ->find('div.media-block__content')
                 ->each(function ($li) {
                     //Link and text

@@ -9,7 +9,7 @@ class FeUrl
 {
     use InstanceCreator;
 
-    public function get()
+    public function get(): string
     {
         if ($this->url) {
             $expUrl = explode('/', $this->url);
@@ -23,6 +23,6 @@ class FeUrl
             return $objectResponse->data;
         }
 
-        return false;
+        return '';
     }
 }

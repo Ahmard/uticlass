@@ -21,7 +21,7 @@ class O2TVSeriesCom
     public function getLinks()
     {
         $firstLinks = [];
-        Client::get($this->url) ->exec()
+        Client::get($this->url) ->execute()
             ->find('html body div.container div.data_list div.data')
             ->each(function (Elements $element) use (&$firstLinks){
                 $firstLinks[] = [
@@ -42,7 +42,7 @@ class O2TVSeriesCom
     public function getEpisodes(string $seasonUrl)
     {
         $secondLinks = [];
-        Client::get($seasonUrl)->exec()
+        Client::get($seasonUrl)->execute()
             ->find('html body div.container div.data_list div.data')
             ->each(function (Elements $element) use (&$secondLinks){
                 $secondLinks[] = [
@@ -63,7 +63,7 @@ class O2TVSeriesCom
     public function getDownloadLinks(string $episodeUrl)
     {
         $thirdLinks = [];
-        Client::get($episodeUrl)->exec()
+        Client::get($episodeUrl)->execute()
             ->find('html body div.container div.data_list')
             ->each(function (Elements $element) use (&$thirdLinks){
                 $downloads = $element->find('span.count')->text();

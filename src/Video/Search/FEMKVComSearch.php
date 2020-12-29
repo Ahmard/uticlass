@@ -31,11 +31,11 @@ class FEMKVComSearch
     public function get(int $pageNumber = 1): array
     {
         $url = str_replace('{query}', $this->query, $this->urlTemplate);
-        $url = str_replace('{pageNumber}', $pageNumber, $url);
+        $url = str_replace('{pageNumber}', (string)$pageNumber, $url);
 
         $searchResults = [];
 
-        $dom = Client::get($url)->exec();
+        $dom = Client::get($url)->execute();
 
         $dom->find('article')
             ->each(function ($article) use (&$searchResults) {

@@ -6,7 +6,7 @@ namespace Uticlass\Core\Struct\Traits;
 
 trait InstanceCreator
 {
-    private string $url;
+    protected string $url;
 
     public function __construct(string $url)
     {
@@ -22,11 +22,10 @@ trait InstanceCreator
     {
         return new static($url);
     }
-    
-    
+
+
     /**
      * Instantiate this class
-     * @param string $url
      * @return static
      */
     public static function create(): self

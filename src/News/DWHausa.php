@@ -25,7 +25,7 @@ class DWHausa extends NewsAbstract
     public function fetch(): object
     {
         try {
-            $ql = Client::get($this->url)->exec();
+            $ql = Client::get($this->url)->execute();
 
             $ql->find('.news')
                 ->each(function ($div) {

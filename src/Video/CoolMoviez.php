@@ -14,7 +14,7 @@ class CoolMoviez
 {
     use InstanceCreator;
 
-    public function get()
+    public function get(): string
     {
         $pageLink1 = $this->pageOne();
         $pageLink2 = $this->pageTwo($pageLink1);
@@ -23,28 +23,28 @@ class CoolMoviez
         return $this->getFinalLink($downloadLink, $pageLink2);
     }
 
-    public function pageOne()
+    public function pageOne(): string
     {
-        return Client::get($this->url)->exec()
+        return Client::get($this->url)->execute()
             ->find('html body div.list div.fl a.fileName')
             ->attr('href');
     }
 
-    public function pageTwo(string $url)
+    public function pageTwo(string $url): string
     {
-        return Client::get($url)->exec()
+        return Client::get($url)->execute()
             ->find('html body div.list div.fshow div.updates a.dwnLink')
             ->attr('href');
     }
 
-    public function pageThree(string $url)
+    public function pageThree(string $url): string
     {
-        return Client::get($url)->exec()
+        return Client::get($url)->execute()
             ->find('html body div.list div.fshow div.downLink a.dwnLink')
             ->attr('href');
     }
 
-    public function getFinalLink(string $url, string $referer)
+    public function getFinalLink(string $url, string $referer): string
     {
         $downloadLink = null;
 

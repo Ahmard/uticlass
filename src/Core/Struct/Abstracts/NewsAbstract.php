@@ -2,10 +2,15 @@
 
 namespace Uticlass\Core\Struct\Abstracts;
 
+use Throwable;
 use Uticlass\Core\Struct\Interfaces\NewsInterface;
 
 abstract class NewsAbstract implements NewsInterface
 {
+    protected array $newsList = array();
+    protected string $url;
+    protected ?Throwable $error = null;
+
     public function getAll(): array
     {
         return $this->newsList;
@@ -24,7 +29,7 @@ abstract class NewsAbstract implements NewsInterface
     }
 
 
-    public function getError()
+    public function getError(): ?Throwable
     {
         return $this->error;
     }

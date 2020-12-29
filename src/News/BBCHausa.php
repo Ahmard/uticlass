@@ -26,7 +26,7 @@ class BBCHausa extends NewsAbstract
     public function fetch(): object
     {
         try {
-            $client = Client::get($this->url)->exec()
+            $client = Client::get($this->url)->execute()
                 ->find("li")
                 ->each(function ($li) {
                     //Link and text

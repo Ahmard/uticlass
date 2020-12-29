@@ -8,6 +8,7 @@ use Uticlass\News\{
     VOAHausa,
     AllSites
 };
+use Uticlass\Core\Struct\Interfaces\NewsInterface;
 
 class News
 {
@@ -19,7 +20,7 @@ class News
     ];
     
     
-    public static function __callStatic($method, $arguments)
+    public static function __callStatic(string $method, array $arguments): object
     {
         //If we are fetching news from all sites
         if($method == 'allSites'){
@@ -29,10 +30,12 @@ class News
         if(array_key_exists($method, static::$methods)){
             return new static::$methods[$method];
         }
+
+        throw new \Exception("New platform '{$method}' is not available..");
     }
     
     
-    public static function getSites()
+    public static function getSites(): array
     {
         return static::$methods;
     }

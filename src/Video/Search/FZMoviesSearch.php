@@ -51,12 +51,12 @@ class FZMoviesSearch
 
     /**
      * Search by Starcast, Director or Movie name
+     * @param string $searchBy
      * @return $this
-     * @param  string $query
      */
-    public function searchBy(string $query): FZMoviesSearch
+    public function searchBy(string $searchBy): FZMoviesSearch
     {
-        $this->searchBy = $query;
+        $this->searchBy = $searchBy;
         return $this;
     }
 
@@ -72,11 +72,11 @@ class FZMoviesSearch
         $url = str_replace('{query}', $this->query, $url);
         $url = str_replace('{searchIn}', $this->searchIn, $url);
         $url = str_replace('{searchBy}', $this->searchBy, $url);
-        $url = str_replace('{pageNumber}', $pageNumber, $url);
+        $url = str_replace('{pageNumber}', (string)$pageNumber, $url);
 
         $searchResults = [];
 
-        $dom = Client::get($url)->exec();
+        $dom = Client::get($url)->execute();
 
         $dom->find('div[class="mainbox"]')
             ->each(function ($div) use (&$searchResults) {
