@@ -15,14 +15,17 @@ class Importer
 
     public static function __callStatic(string $method, array $args): Importer
     {
-        $method = "_{$method}";
-        return (new Importer())->$method(...$args);
+        if ('import' == $method){
+            return new Importer(...$args);
+        }
+
+        $className = __CLASS__;
+        throw new \Exception("Method {$className}::{$method}() does not exists.");
     }
 
-    public function _import(string $url): Importer
+    public function __construct(string $url)
     {
         $this->url = $url;
-        return $this;
     }
 
     public function save(string $file): bool
