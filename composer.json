@@ -1,11 +1,12 @@
 {
     "name": "ahmard/uticlass",
-    "description": "Pieces of classes jam-packed to ease day-too-day life :)",
+    "description": "Pieces of classes jam-packed to ease day-to-day life :)",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Ahmard"
+            "name": "Ahmard",
+            "email": "uticlass@outlook.com"
         }
     ],
     "require": {
