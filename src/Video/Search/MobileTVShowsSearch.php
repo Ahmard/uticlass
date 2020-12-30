@@ -8,7 +8,7 @@ use Nette\Utils\Strings;
 use Queliwrap\Client;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class MobileTVShows
+class MobileTVShowsSearch
 {
     use InstanceCreator;
 
@@ -26,7 +26,7 @@ class MobileTVShows
     private string $urlTemplate = 'search.php?search={query}&by={searchBy}&pg={pageNumber}';
 
 
-    public function search(string $query): MobileTVShows
+    public function search(string $query): MobileTVShowsSearch
     {
         $this->query = $query;
         return $this;
@@ -37,7 +37,7 @@ class MobileTVShows
      * @param string $searchBy
      * @return $this
      */
-    public function searchBy(string $searchBy): MobileTVShows
+    public function searchBy(string $searchBy): MobileTVShowsSearch
     {
         $this->searchBy = $searchBy;
         return $this;

@@ -5,12 +5,11 @@ namespace Uticlass\Video\Search;
 use Nette\Utils\Strings;
 use Queliwrap\Client;
 use Throwable;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class FZMoviesSearch
+class FZMoviesSearch extends Scraper
 {
-    use InstanceCreator;
-
     private string $query;
 
     private string $searchIn = 'All';

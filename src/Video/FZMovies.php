@@ -3,21 +3,18 @@
 namespace Uticlass\Video;
 
 use Goutte\Client;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class FZMovies
+class FZMovies extends Scraper
 {
-    use InstanceCreator {
-        __construct as ICConstructor;
-    }
-
     protected string $links;
 
     protected ?string $downloadLink;
 
     public function __construct(string $url)
     {
-        $this->ICConstructor($url);
+        parent::__construct($url);
     }
 
     public function get(int $chosenLink = 1): string

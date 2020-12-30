@@ -3,12 +3,10 @@
 namespace Uticlass\Video\FEMkvCom;
 
 use Queliwrap\Client;
-use Uticlass\Core\Struct\Traits\InstanceCreator;
+use Uticlass\Core\Scraper;
 
-class Main
+class Main extends Scraper
 {
-    use InstanceCreator;
-
     protected array $episodes = array();
 
     protected array $links = array();

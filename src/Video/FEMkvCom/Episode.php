@@ -3,8 +3,9 @@
 namespace Uticlass\Video\FEMkvCom;
 
 use Queliwrap\Client;
+use Uticlass\Core\Scraper;
 
-class Episode
+class Episode extends Scraper
 {
     protected static array $links;
 

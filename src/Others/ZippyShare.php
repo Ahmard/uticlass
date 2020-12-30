@@ -3,12 +3,11 @@
 namespace Uticlass\Others;
 
 use Queliwrap\Client;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class ZippyShare
+class ZippyShare extends Scraper
 {
-    use InstanceCreator;
-
     protected string $fileUrl;
 
     public function get(): string

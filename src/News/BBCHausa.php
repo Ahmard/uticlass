@@ -9,19 +9,9 @@ use Uticlass\Core\Struct\Traits\InstanceCreator;
 
 class BBCHausa extends NewsAbstract
 {
-    use InstanceCreator {
-        __construct as ICConstructor;
-    }
-
     protected array $newsList = array();
 
     protected ?Throwable $error = null;
-
-
-    public function __construct()
-    {
-        $this->ICConstructor('https://m.dw.com/ha/');
-    }
 
     public function fetch(): object
     {

@@ -5,12 +5,11 @@ namespace Uticlass\Video;
 
 use QL\Dom\Elements;
 use Queliwrap\Client;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class EgyBest
+class EgyBest extends Scraper
 {
-    use InstanceCreator;
-
     private array $links = [];
 
     public function get(): EgyBest

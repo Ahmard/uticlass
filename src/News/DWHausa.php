@@ -17,10 +17,6 @@ class DWHausa extends NewsAbstract
 
     protected ?Throwable $error = null;
 
-    public function __construct()
-    {
-        $this->ICConstructor('https://m.dw.com/ha/');
-    }
 
     public function fetch(): object
     {

@@ -3,12 +3,11 @@
 namespace Uticlass\Video;
 
 use GuzzleHttp\Client;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class FeUrl
+class FeUrl extends Scraper
 {
-    use InstanceCreator;
-
     public function get(): string
     {
         if ($this->url) {

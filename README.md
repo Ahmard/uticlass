@@ -68,6 +68,6 @@ $searchResults = FEMKVComSearch::create()
     ->search('love')
     ->get();
 ```
-## [Examplez](examples)
+## [Examples](examples)
 
-### USIHOYUSEF :)
+### No Licence :)

@@ -8,12 +8,11 @@ use Exception;
 use Guzwrap\Request;
 use Psr\Http\Message\ResponseInterface;
 use Queliwrap\Client;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class CoolMoviez
+class CoolMoviez extends Scraper
 {
-    use InstanceCreator;
-
     public function get(): string
     {
         $pageLink1 = $this->pageOne();

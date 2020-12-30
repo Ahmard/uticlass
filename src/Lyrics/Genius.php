@@ -17,6 +17,7 @@ class Genius
     /**
      * Get lyrics
      * @return string|Throwable
+     * @throws Throwable
      */
     public function get()
     {

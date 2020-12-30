@@ -7,20 +7,19 @@ namespace Uticlass\Video;
 use QL\Dom\Elements;
 use Queliwrap\Client;
 use Throwable;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class O2TVSeriesCoZa
+class O2TVSeriesCoZa extends Scraper
 {
-    use InstanceCreator;
-
     private string $domain;
 
     /**
      * Get season links
-     * @return array[]
+     * @return array
      * @throws Throwable
      */
-    public function getLinks()
+    public function getLinks(): array
     {
         $seasons = [];
         $parsed = parse_url($this->url);
@@ -44,10 +43,10 @@ class O2TVSeriesCoZa
     /**
      * Get season episodes
      * @param string $seasonUrl
-     * @return array[]
+     * @return array
      * @throws Throwable
      */
-    public function getEpisodes(string $seasonUrl)
+    public function getEpisodes(string $seasonUrl): array
     {
         $episodes = [];
         Client::get($seasonUrl)->execute()
@@ -69,10 +68,10 @@ class O2TVSeriesCoZa
     /**
      * Get episode download links
      * @param string $episodeUrl
-     * @return array[]
+     * @return array
      * @throws Throwable
      */
-    public function getDownloadLinks(string $episodeUrl)
+    public function getDownloadLinks(string $episodeUrl): array
     {
 
         $links = [];

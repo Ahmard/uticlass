@@ -3,12 +3,11 @@
 namespace Uticlass\Video;
 
 use Queliwrap\Client;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class FPO
+class FPO extends Scraper
 {
-    use InstanceCreator;
-
     public function get(): array
     {
         $ql = Client::get($this->url)->execute();

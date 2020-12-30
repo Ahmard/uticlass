@@ -6,12 +6,11 @@ use Nette\Utils\Strings;
 use QL\Dom\Elements;
 use Queliwrap\Client;
 use Throwable;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
-class FEMKVComSearch
+class FEMKVComSearch extends Scraper
 {
-    use InstanceCreator;
-
     private string $query;
 
     private string $urlTemplate = 'https://480mkv.com/page/{pageNumber}/?s={query}';

@@ -7,15 +7,14 @@ use Guzwrap\Request;
 use Psr\Http\Message\ResponseInterface;
 use Queliwrap\Client;
 use Throwable;
+use Uticlass\Core\Scraper;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
 /**
  * Extract download link from https://netnaija.com
  */
-class NetNaija
+class NetNaija extends Scraper
 {
-    use InstanceCreator;
-
     protected string $foundLink;
 
     /**

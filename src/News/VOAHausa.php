@@ -18,11 +18,6 @@ class VOAHausa extends NewsAbstract
     protected ?Throwable $error = null;
 
 
-    public function __construct()
-    {
-        $this->ICConstruct('https://www.voahausa.com/');
-    }
-
     public function fetch(): object
     {
         try {
