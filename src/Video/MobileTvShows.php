@@ -45,7 +45,7 @@ class MobileTvShows extends Scraper
                 $firstLink = $td2->find('span > a')->eq(0);
                 $secondLink = $td2->find('span > a')->eq(1);
                 $episodes[] = [
-                    'image' => $image,
+                    'image' => $this->mtsHost . $image,
                     'title' => $td2->find('span > small > b')->text(),
                     'links' => [
                         [
