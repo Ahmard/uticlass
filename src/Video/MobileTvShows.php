@@ -6,12 +6,19 @@ namespace Uticlass\Video;
 
 use QL\Dom\Elements;
 use Queliwrap\Client;
+use Throwable;
 use Uticlass\Core\Scraper;
 
 class MobileTvShows extends Scraper
 {
     private string $mtsHost = 'https://mobiletvshows.net/';
 
+    /**
+     * Get list of series
+     * @param string $url
+     * @return array
+     * @throws Throwable
+     */
     public function getSeasons(string $url): array
     {
         $seasons = [];
@@ -30,6 +37,12 @@ class MobileTvShows extends Scraper
         return $seasons;
     }
 
+    /**
+     * Get list of episodes in series
+     * @param string $seasonUrl
+     * @return array
+     * @throws Throwable
+     */
     public function getEpisodes(string $seasonUrl): array
     {
         $episodes = [];
@@ -63,6 +76,12 @@ class MobileTvShows extends Scraper
         return $episodes;
     }
 
+    /**
+     * Get stream/download links
+     * @param string $episodeUrl
+     * @return string[]
+     * @throws Throwable
+     */
     public function getEpisodeLinks(string $episodeUrl): array
     {
         $queryList = Client::get($episodeUrl)
@@ -75,6 +94,12 @@ class MobileTvShows extends Scraper
         ];
     }
 
+    /**
+     * Get episode download links
+     * @param string $downloadUrl
+     * @return array
+     * @throws Throwable
+     */
     public function getDownloadLinks(string $downloadUrl): array
     {
         $links = [];
@@ -86,5 +111,25 @@ class MobileTvShows extends Scraper
                 $links[] = $element->attr('value');
             });
         return $links;
+    }
+
+    /**
+     * Check if given url is season url, example: The Blacklist complete
+     * @param string $url
+     * @return bool
+     */
+    public static function isCollectionUrl(string $url): bool
+    {
+        return false !== strpos($url, 'subfolder-');
+    }
+
+    /**
+     * Check if given url is season url, example: The Blacklist season 1
+     * @param string $url
+     * @return bool
+     */
+    public static function isSeasonUrl(string $url): bool
+    {
+        return false !== strpos($url, 'files-');
     }
 }
