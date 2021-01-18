@@ -2,17 +2,18 @@
 
 namespace Uticlass;
 
+use Guzwrap\Request;
+use Guzwrap\RequestInterface;
 use Queliwrap\Client;
+use Uticlass\Core\Scraper;
 
 /**
  * Class Importer
  * @package Uticlass
  * @method static Importer import(string $url) Import remote file
  */
-class Importer
+class Importer extends Scraper
 {
-    protected string $url;
-
     public static function __callStatic(string $method, array $args): Importer
     {
         if ('import' == $method){
@@ -23,16 +24,16 @@ class Importer
         throw new \Exception("Method {$className}::{$method}() does not exists.");
     }
 
-    public function __construct(string $url)
+    public function save(string $file): void
     {
-        $this->url = $url;
-    }
-
-    public function save(string $file): bool
-    {
-        Client::get($this->url)->sink($file)->execute();
-
-        return true;
+        if (isset($this->request)){
+            var_dump(Request::useRequest($this->request)
+                ->get($this->url)
+                ->sink($file)
+                ->getRequestData());
+        }else{
+            Request::get($this->url)->sink($file)->execute();
+        }
     }
 
 }
