@@ -28,3 +28,5 @@ $episodeLinks = MobileTvShows::create()
 $downloadLinks = MobileTvShows::create()
     ->useRequest($request)
     ->getDownloadLinks($episodeLinks['download']);
+
+var_export($downloadLinks);

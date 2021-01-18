@@ -89,4 +89,26 @@ class O2TVSeriesCoZa extends Scraper
 
         return $links;
     }
+
+    /**
+     * Check if given url is collection url, example: The Blacklist complete
+     * @param string $url
+     * @return bool
+     */
+    public static function isCollectionUrl(string $url): bool
+    {
+        preg_match("@/id/([0-9]+)/@", $url, $matches);
+        return count($matches) > 1;
+    }
+
+    /**
+     * Check if given url is season url, example: The Blacklist season 1
+     * @param string $url
+     * @return bool
+     */
+    public static function isSeasonUrl(string $url): bool
+    {
+        preg_match("@/tv-series/([0-9]+)/@", $url, $matches);
+        return count($matches) > 1;
+    }
 }

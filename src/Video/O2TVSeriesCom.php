@@ -77,4 +77,15 @@ class O2TVSeriesCom extends Scraper
 
         return $thirdLinks;
     }
+
+    /**
+     * Check if given url is season url, example: The Blacklist season 1
+     * @param string $url
+     * @return bool
+     */
+    public static function isSeasonUrl(string $url): bool
+    {
+        preg_match("@/Season\-([0-9]+)@", $url, $matches);
+        return count($matches) > 1;
+    }
 }
