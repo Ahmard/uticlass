@@ -87,4 +87,24 @@ class NetNaija extends Scraper
         $decodedJson = json_decode($jsonResponse);
         return $decodedJson->data->url;
     }
+
+    /**
+     * Determine whether url is video url
+     * @param string $url
+     * @return bool
+     */
+    public static function isVideoUrl(string $url): bool
+    {
+        return false !== strpos($url, '/videos/');
+    }
+
+    /**
+     * Determine whether url is video url
+     * @param string $url
+     * @return bool
+     */
+    public static function isForumUrl(string $url): bool
+    {
+        return false !== strpos($url, '/forum/');
+    }
 }
