@@ -8,7 +8,7 @@ $url = 'https://www.thenetnaija.com/search?t=star+wars';
 
 $results = NetNaijaSearch::create()
     ->search('love')
-    ->category(NetNaijaSearch::CAT_VIDEOS)
+    ->category(NetNaijaSearch::CAT_MOVIES)
     ->get(3);
 
 var_dump($results);

@@ -15,6 +15,7 @@ class NetNaijaSearch extends Searcher
     public const CAT_FORUM = 'forum';
     public const CAT_MUSIC = 'music';
     public const CAT_VIDEOS = 'videos';
+    public const CAT_MOVIES = 'movies';
 
     protected string $url = 'https://www.thenetnaija.com/search/page/{pageNumber}';
     protected array $params = [
@@ -30,13 +31,25 @@ class NetNaijaSearch extends Searcher
     public function get(int $pageNumber = 1): array
     {
         $searchResults = [];
+        //If movies is chosen, the we will scrape videos page and filter out movies
+        if (self::CAT_MOVIES == $this->paramValues['{category}']) {
+            $this->paramValues['{category}'] = self::CAT_VIDEOS;
+        }
+
         $queryList = Client::get($this->getConstructedUrl($pageNumber))->execute();
 
         $queryList->find('article[class="result"]')
             ->each(function (Elements $element) use (&$searchResults) {
                 $infoElement = $element->find('div.result-info h3');
-                $image = $element->find('div.result-img img')->attr('src');
                 $title = $infoElement->text();
+                //Handles movies filter
+                if (self::CAT_MOVIES == $this->paramValues['{category}']) {
+                    if (false === strpos($title, 'Movie:')) {
+                        return false;
+                    }
+                }
+
+                $image = $element->find('div.result-img img')->attr('src');
                 $link = $infoElement->find('a')->attr('href');
                 $desc = $element->find('p.result-desc')->text();
                 $searchResults[] = [
