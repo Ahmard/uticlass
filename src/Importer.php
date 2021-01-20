@@ -27,12 +27,12 @@ class Importer extends Scraper
     public function save(string $file): void
     {
         if (isset($this->request)){
-            var_dump(Request::useRequest($this->request)
+            Request::useRequest($this->request)
                 ->get($this->url)
                 ->sink($file)
-                ->getRequestData());
+                ->exec();
         }else{
-            Request::get($this->url)->sink($file)->execute();
+            Request::get($this->url)->sink($file)->exec();
         }
     }
 
