@@ -3,6 +3,8 @@ parameters:
     checkMissingIterableValueType: false
     ignoreErrors:
     		- '#Unsafe usage of new static\(\)#'
+    		- '#Call to an undefined method Guzwrap\\Core\\GuzzleWrapper::execute\(\)#'
+    		- '#Call to an undefined method Uticlass\\Core\\Searcher::get\(\)#'
     paths:
         - examples
         - src

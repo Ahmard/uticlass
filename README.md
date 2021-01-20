@@ -19,11 +19,12 @@ composer require ahmard/uticlass
 ```
 
 # Usage
+
+### Videos
+Extract movies/tv shows download links
 ```php
-use Uticlass\Others\ZippyShare;
 use Uticlass\Video\CoolMoviez;
 use Uticlass\Video\FZMovies;
-use Uticlass\Lyrics\Genius;
 use Uticlass\Video\NetNaija;
 
 require 'vendor/autoload.php';
@@ -41,6 +42,14 @@ $dlLink2 = NetNaija::init($nnUrl)->get()->linkTwo();
 //Mycoolmoviez
 $mcUrl = 'https://www.coolmoviez.shop/movie/4715/Megafault_(2009)_english_movie.html';
 $dlLink3 = CoolMoviez::init($mcUrl)->get();
+```
+
+### Others
+Extract links from file storage and lyric sites
+```php
+use Uticlass\Lyrics\Genius;
+use Uticlass\Others\ZippyShare;
+use Uticlass\Others\FireFiles;
 
 //Genius lyrics
 $lyrics = Genius::init('https://genius.com/Taylor-swift-the-last-great-american-dynasty-lyrics')->get();
@@ -48,13 +57,18 @@ $lyrics = Genius::init('https://genius.com/Taylor-swift-the-last-great-american-
 //ZippyShare
 $zippyUrl = 'https://www118.zippyshare.com/v/5pwuoWgg/file.html';
 $fileUrl = ZippyShare::init($zippyUrl)->get();
+
+//FireFiles
+$webpageUrl = 'https://firefiles.org/5m6rzmnb7v54'; //The Mandalorian S01E06
+$fileLink = FireFiles::init($webpageUrl)->get();
 ```
 
-## Searching
+### Searching
+Search movies sites
 ```php
-
 use Uticlass\Video\Search\FZMoviesSearch;
 use Uticlass\Video\Search\FEMKVComSearch;
+use Uticlass\Video\Search\NetNaijaSearch;
 
 require 'vendor/autoload.php';
 
@@ -67,6 +81,12 @@ $searchResults = FZMoviesSearch::create()
 $searchResults = FEMKVComSearch::create()
     ->search('love')
     ->get();
+
+//NetNaija.com
+$searchResults = NetNaijaSearch::create()
+    ->search('love')
+    ->category(NetNaijaSearch::CAT_VIDEOS)
+    ->get(3);
 ```
 ## [Examples](examples)
 

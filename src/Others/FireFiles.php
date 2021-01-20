@@ -55,7 +55,7 @@ class FireFiles extends Scraper
         return $this->secondPage($inputs);
     }
 
-    private function secondPage(array $inputs)
+    private function secondPage(array $inputs): string
     {
         $secondInputs = [];
         Client::post(function (Post $post) use ($inputs) {
