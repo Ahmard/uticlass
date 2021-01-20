@@ -56,7 +56,7 @@ class NetNaijaSearch extends Searcher
                 'page_number' => $pageNumber,
                 'total_pages' => (int)$matches[2],
             ],
-            'searchResults' => $searchResults,
+            'results' => $searchResults,
         ];
     }
 }
