@@ -18,9 +18,11 @@ class Scraper
      */
     private Config $config;
 
-    public function __construct(string $url)
+    public function __construct(?string $url = null)
     {
-        $this->url = $url;
+        if (!empty($url)){
+            $this->url = $url;
+        }
     }
 
     /**
@@ -28,7 +30,7 @@ class Scraper
      * @param string $url
      * @return static
      */
-    public static function init(string $url = ''): self
+    public static function init(string $url): Scraper
     {
         return new static($url);
     }
@@ -37,9 +39,9 @@ class Scraper
      * Instantiate this class
      * @return static
      */
-    public static function create()
+    public static function create(): Scraper
     {
-        return new static('');
+        return new static();
     }
 
     /**

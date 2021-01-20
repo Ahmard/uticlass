@@ -6,6 +6,7 @@ namespace Uticlass\Video\Search;
 
 use Nette\Utils\Strings;
 use Queliwrap\Client;
+use Throwable;
 use Uticlass\Core\Struct\Traits\InstanceCreator;
 
 class MobileTVShowsSearch
@@ -43,6 +44,11 @@ class MobileTVShowsSearch
         return $this;
     }
 
+    /**
+     * @param int $pageNumber
+     * @return array
+     * @throws Throwable
+     */
     public function get(int $pageNumber = 1): array
     {
         $urlTemplate = $this->urlTemplate;
