@@ -32,19 +32,21 @@ class NetNaijaSearch extends Searcher
     {
         $searchResults = [];
         //If movies is chosen, the we will scrape videos page and filter out movies
+        $isMoviesCategory = false;
         if (self::CAT_MOVIES == $this->paramValues['{category}']) {
+            $isMoviesCategory = true;
             $this->paramValues['{category}'] = self::CAT_VIDEOS;
         }
 
         $queryList = Client::get($this->getConstructedUrl($pageNumber))->execute();
 
         $queryList->find('article[class="result"]')
-            ->each(function (Elements $element) use (&$searchResults) {
+            ->each(function (Elements $element) use (&$searchResults, $isMoviesCategory) {
                 $infoElement = $element->find('div.result-info h3');
                 $title = $infoElement->text();
                 //Handles movies filter
-                if (self::CAT_MOVIES == $this->paramValues['{category}']) {
-                    if (false === strpos($title, 'Movie:')) {
+                if ($isMoviesCategory) {
+                    if (false === strpos($title, 'Movie')) {
                         return false;
                     }
                 }
