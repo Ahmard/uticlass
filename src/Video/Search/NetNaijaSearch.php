@@ -17,10 +17,11 @@ class NetNaijaSearch extends Searcher
     public const CAT_VIDEOS = 'videos';
     public const CAT_MOVIES = 'movies';
 
-    protected string $url = 'https://www.thenetnaija.com/search/page/{pageNumber}';
+    protected string $url = 'https://www.thenetnaija.com/search';
     protected array $params = [
         't' => '{query}',
         'folder' => '{category}',
+        'page' => '{pageNumber}',
     ];
 
     /**
@@ -31,7 +32,7 @@ class NetNaijaSearch extends Searcher
     public function get(int $pageNumber = 1): array
     {
         $searchResults = [];
-        //If movies is chosen, the we will scrape videos page and filter out movies
+        //If movies is chosen, then we will scrape videos page and filter out movies
         $isMoviesCategory = false;
         if (self::CAT_MOVIES == $this->paramValues['{category}']) {
             $isMoviesCategory = true;
@@ -39,27 +40,25 @@ class NetNaijaSearch extends Searcher
         }
 
         $queryList = Client::get($this->getConstructedUrl($pageNumber))->execute();
-
-        $queryList->find('article[class="result"]')
+        $queryList->find('div.search-results')
+            ->find('article.sr-one')
             ->each(function (Elements $element) use (&$searchResults, $isMoviesCategory) {
-                $infoElement = $element->find('div.result-info h3');
-                $title = $infoElement->text();
-                //Handles movies filter
-                if ($isMoviesCategory) {
-                    if (false === strpos($title, 'Movie')) {
-                        return false;
-                    }
-                }
+                #dump($element->html());
 
-                $image = $element->find('div.result-img img')->attr('src');
-                $link = $infoElement->find('a')->attr('href');
-                $desc = $element->find('p.result-desc')->text();
-                $searchResults[] = [
-                    'title' => $title,
-                    'href' => $link,
-                    'image' => $image,
-                    'desc' => $desc
-                ];
+                $infoElement = $element->find('div.info h3');
+                $title = trim($infoElement->text());
+
+                if ($isMoviesCategory && false !== strpos($title, 'Movie')) {
+                    $image = $element->find('div.result-img img')->attr('src');
+                    $link = $infoElement->find('a')->attr('href');
+                    $desc = $element->find('p.result-desc')->text();
+                    $searchResults[] = [
+                        'title' => $title,
+                        'href' => $link,
+                        'image' => $image,
+                        'desc' => $desc
+                    ];
+                }
             });
 
         //Pagination
@@ -69,7 +68,8 @@ class NetNaijaSearch extends Searcher
         return [
             'meta' => [
                 'page_number' => $pageNumber,
-                'total_pages' => (int)$matches[2],
+                # 'total_pages' => (int)$matches[2],
+                'total_pages' => -1, # Total pages is currently not supported
             ],
             'results' => $searchResults,
         ];

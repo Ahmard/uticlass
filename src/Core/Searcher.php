@@ -24,19 +24,18 @@ class Searcher extends Scraper
 
     protected function hasParam(string $param): bool
     {
-        return array_key_exists("{$param}", $this->paramValues);
+        return array_key_exists($param, $this->paramValues);
     }
 
     protected function getConstructedUrl(int $pageNumber = 1): string
     {
+        $this->paramValues['{pageNumber}'] = $pageNumber;
         $builtUrl = urldecode(http_build_query($this->params));
 
-        $url = $this->url . '?' . str_replace(
+        return $this->url . '?' . str_replace(
             array_values($this->params),
             array_values($this->paramValues),
             $builtUrl
         );
-
-        return str_replace('{pageNumber}', (string)$pageNumber, $url);
     }
 }
