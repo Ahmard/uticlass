@@ -8,33 +8,41 @@ use Psr\Http\Message\ResponseInterface;
 use Queliwrap\Client;
 use Throwable;
 use Uticlass\Core\Scraper;
-use Uticlass\Core\Struct\Traits\InstanceCreator;
+use Uticlass\TryDownloadMethod;
 
 /**
  * Extract download link from https://netnaija.com
  */
 class NetNaija extends Scraper
 {
-    protected string $foundLink;
+    protected string $foundLink = '';
 
     /**
      * Starts finding link
-     * @return $this
+     * @return string
+     */
+    public function get(): string
+    {
+        return $this->tryExtractingMethods();
+    }
+
+    protected function tryExtractingMethods(): string
+    {
+        return TryDownloadMethod::create()
+            ->addMethod(fn() => $this->method2())
+            ->addMethod(fn() => $this->method1())
+            ->execute();
+    }
+
+    /**
+     * @return string
      * @throws Throwable
      */
-    public function get(): NetNaija
+    public function method1(): string
     {
-        $link = Client::get($this->url)
-            ->execute()
-            ->find('a.button:nth-child(4)')
-            ->attr('href');
-
-        //Needed to fix uninitialized var access error
-        $this->foundLink = '';
-
         try {
             $count = 1;
-            Request::get($link)
+            Request::get($this->appendDownloadPrefixToUrl())
                 ->onHeaders(function (ResponseInterface $response) use (&$count) {
                     $link = $response->getHeaderLine('location');
                     if (strstr($link, 'sabishare')) {
@@ -52,19 +60,27 @@ class NetNaija extends Scraper
         } catch (Throwable $e) {
         }
 
-        return $this;
+        return $this->getDownloadLink();
     }
 
     /**
-     * Get final download link
-     * @param string|null $url
      * @return string
+     * @throws Throwable
      */
-    public function linkTwo(?string $url = null): string
+    public function method2(): string
     {
-        return $this->getDownloadLink($url);
+        return Client::get($this->appendDownloadPrefixToUrl())
+            ->sink('download.html')
+            ->execute()
+            ->find('a#download')
+            ->attr('href');
     }
 
+    /**
+     * @param string|null $url
+     * @return string
+     * @throws Throwable
+     */
     private function getDownloadLink(?string $url = null): string
     {
         $url ??= $this->foundLink;
@@ -86,6 +102,15 @@ class NetNaija extends Scraper
 
         $decodedJson = json_decode($jsonResponse);
         return $decodedJson->data->url;
+    }
+
+    protected function appendDownloadPrefixToUrl() :string
+    {
+        if ('/' == substr($this->url, -1, 1)){
+            return $this->url . 'download';
+        }
+
+        return "$this->url/download";
     }
 
     /**
