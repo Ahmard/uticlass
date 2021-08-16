@@ -70,7 +70,6 @@ class NetNaija extends Scraper
     public function method2(): string
     {
         return Client::get($this->appendDownloadPrefixToUrl())
-            ->sink('download.html')
             ->execute()
             ->find('a#download')
             ->attr('href');
