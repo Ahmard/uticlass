@@ -6,11 +6,11 @@
     "authors": [
         {
             "name": "Ahmard",
-            "email": "uticlass@outlook.com"
+            "email": "ahmardy@outlook.com"
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": ">=8.0",
         "ext-json": "*",
         "ahmard/queliwrap": "^3.0",
         "fabpot/goutte": "^4.0",

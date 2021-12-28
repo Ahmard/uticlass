@@ -1,6 +1,6 @@
 # Uticlass
-Pieces of classes jam-packed to ease day-to-day life :)
 
+Pieces of classes jam-packed to ease day-to-day life :)
 
 # Installation
 
@@ -8,6 +8,7 @@ Make sure that you have composer installed
 [Composer](http://getcomposer.org).
 
 If you don't have Composer run the below command
+
 ```bash
 curl -sS https://getcomposer.org/installer | php
 ```
@@ -21,7 +22,9 @@ composer require ahmard/uticlass
 # Usage
 
 ### Videos
+
 Extract movies/tv shows download links
+
 ```php
 use Uticlass\Video\CoolMoviez;
 use Uticlass\Video\FZMovies;
@@ -33,7 +36,10 @@ require 'vendor/autoload.php';
 
 //Fzmovies
 $fzUrl = 'https://fzmovies.net/movie-Moana%202016--hmp4.htm';
-$dlLink1 = FZMovies::init($fzUrl)->get();
+$dlLink1 = FZMovies::init($fzUrl)->get(
+    chosenLink: 2, 
+    quality: FZMovies::QUALITY_720P
+);
 
 //Netnaija
 $nnUrl = 'https://www.thenetnaija.com/videos/movies/6856-hot-summer-nights-2017';
@@ -45,7 +51,9 @@ $dlLink3 = CoolMoviez::init($mcUrl)->get();
 ```
 
 ### Others
+
 Extract links from file storage and lyric sites
+
 ```php
 use Uticlass\Lyrics\Genius;
 use Uticlass\Others\ZippyShare;
@@ -64,7 +72,9 @@ $fileLink = FireFiles::init($webpageUrl)->get();
 ```
 
 ### Searching
+
 Search movies sites
+
 ```php
 use Uticlass\Video\Search\FZMoviesSearch;
 use Uticlass\Video\Search\FEMKVComSearch;
@@ -88,6 +98,7 @@ $searchResults = NetNaijaSearch::create()
     ->category(NetNaijaSearch::CAT_VIDEOS)
     ->get(3);
 ```
+
 ## [Examples](examples)
 
 ### No Licence :)

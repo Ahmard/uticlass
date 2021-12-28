@@ -4,10 +4,12 @@ namespace Uticlass\Video;
 
 use Goutte\Client;
 use Uticlass\Core\Scraper;
-use Uticlass\Core\Struct\Traits\InstanceCreator;
 
 class FZMovies extends Scraper
 {
+    public const QUALITY_480P = 0;
+    public const QUALITY_720P = 1;
+
     protected string $links;
 
     protected ?string $downloadLink;
@@ -17,12 +19,16 @@ class FZMovies extends Scraper
         parent::__construct($url);
     }
 
-    public function get(int $chosenLink = 1): string
+    public function get(int $chosenLink = 1, int $quality = 0): string
     {
         $client = new Client;
 
         $crawler = $client->request('GET', $this->url);
-        $linkTextOne = $crawler->filter('#downloadoptionslink2')->text();
+
+        $linkTextOne = $crawler->filter('a[id="downloadoptionslink2"]')
+            ->eq($quality)
+            ->text();
+
         $linkOne = $crawler->selectLink($linkTextOne)->link();
 
         $crawlerTwo = $client->click($linkOne);
