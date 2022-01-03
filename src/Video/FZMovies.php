@@ -40,7 +40,7 @@ class FZMovies extends Scraper
         $linkThree = $crawlerThree->selectLink($linkTextThree)->link();
 
         $crawlerFour = $client->click($linkThree);
-        $this->downloadLink = $crawlerFour->filter('a')->eq(0)->attr('href');
+        $this->downloadLink = $crawlerFour->filter('input[name="download1"]')->eq(0)->attr('value');
 
         return $this->downloadLink;
     }
