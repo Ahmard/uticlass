@@ -16,7 +16,7 @@ class FZMoviesSearch extends Scraper
 
     private string $searchBy = 'Name';
     
-    private string $fzHost = 'https://fzmovies.net/';
+    private string $fzHost = 'https://fzmovies.live/';
 
     private string $urlTemplate = 'csearch.php?searchname={query}&searchby={searchBy}&category={searchIn}&pg={pageNumber}';
 
